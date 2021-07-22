@@ -7,6 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.jfoenix.controls.JFXDecorator;
 
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Bao Kastan
+ */
+
 import java.io.IOException;
 import java.util.Objects;
 
