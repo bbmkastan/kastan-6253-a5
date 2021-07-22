@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ItemCreatorController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #6200EE;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="17.0" text="Item Creator" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="itemNameTextField" layoutX="153.0" layoutY="99.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="99.0" />
+      <TextField fx:id="serialNumberTextField" layoutX="153.0" layoutY="139.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="139.0" />
+      <TextField fx:id="vauleTextField" layoutX="153.0" layoutY="179.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="179.0" />
+      <Label layoutX="62.0" layoutY="102.0" text="Item Name:" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="102.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="142.0" text="Serial Number:" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="142.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="99.0" layoutY="182.0" text="Value:" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="182.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton buttonType="RAISED" layoutX="331.0" layoutY="179.0" onAction="#createItemButtonClicked" ripplerFill="WHITE" style="-fx-background-color: #BB86FC; -fx-background-radius: 1000;" text="+" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

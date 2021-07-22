@@ -1,0 +1,15 @@
+@startuml
+!define DARKBLUE
+!includeurl https://raw.githubusercontent.com/Drakemor/RedDress-PlantUML/master/style.puml
+'https://plantuml.com/class-diagram
+
+class InventoryApp {
+    main()
+    start()
+}
+
+Application <|-- InventoryApp
+InventoryApp -- InventoryAppController
+InventoryAppController --* Item
+InventoryApp -- ItemCreatorController
+@enduml
