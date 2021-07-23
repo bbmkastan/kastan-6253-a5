@@ -47,7 +47,6 @@ public class ItemCreatorController {
                 return true;
             }
         }
-        // warning box
         return false;
     }
 
@@ -55,8 +54,8 @@ public class ItemCreatorController {
         if (itemNameTextField.getText().trim().length() > 1 && itemNameTextField.getText().trim().length() < 257) {
             return itemNameTextField.getText();
         }
-        SceneManager sm = new SceneManager();
-        sm.loadAlertErrorBox("Invalid Input","Names have to be at least 2 characters long and" +
+        SceneManager sceneManager = new SceneManager();
+        sceneManager.loadAlertErrorBox("Invalid Input","Names have to be at least 2 characters long and" +
                 "at most 256 characters long.");
         return null;
     }
@@ -80,8 +79,8 @@ public class ItemCreatorController {
             double num = Double.parseDouble(valueTextField.getText().trim());
             price = String.format("%.2f", num);
         } catch (NumberFormatException e) {
-            SceneManager sm = new SceneManager();
-            sm.loadAlertErrorBox("Invalid Input", "Invalid Input in price text field:" +
+            SceneManager sceneManager = new SceneManager();
+            sceneManager.loadAlertErrorBox("Invalid Input", "Invalid Input in price text field:" +
                     "Make sure to to put in numbers only");
         }
         return price;

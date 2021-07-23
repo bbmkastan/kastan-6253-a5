@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -51,7 +50,9 @@ public class InventoryAppController implements Initializable {
 
     @FXML
     void deleteButtonClicked(ActionEvent event) {
-
+        int visibleIndex = tableListView.getSelectionModel().getSelectedIndex();
+        list.remove(visibleIndex);
+        tableListView.refresh();
     }
 
     @FXML
@@ -97,8 +98,9 @@ public class InventoryAppController implements Initializable {
             if (event.getNewValue().trim().length() > 1 && event.getNewValue().trim().length() < 257) {
                 item.setName(event.getNewValue());
             } else {
-                SceneManager sm = new SceneManager();
-                sm.loadAlertErrorBox("Invalid Input","Names have to be at least 2 characters long and" +
+                SceneManager sceneManager = new SceneManager();
+                sceneManager.loadAlertErrorBox("Invalid Input",
+                        "Names have to be at least 2 characters long and" +
                         "at most 256 characters long.");
                 item.setName(event.getOldValue());
             }
@@ -108,19 +110,21 @@ public class InventoryAppController implements Initializable {
         colSerialNum.setCellFactory(TextFieldTableCell.forTableColumn());
         colSerialNum.setCellValueFactory(new PropertyValueFactory<>("SerialNum"));
         colSerialNum.setOnEditCommit(event -> {
-            SceneManager sm = new SceneManager();
+            SceneManager sceneManager = new SceneManager();
             String serialNum = event.getNewValue();
             Item item = event.getRowValue();
             if (serialNum.trim().length() == 10) {
                 if (!isDuplicateSerialNum(serialNum)) {
                     item.setSerialNum(event.getNewValue());
                 } else {
-                    sm.loadAlertErrorBox("Invalid Input", "This serial number already exist");
+                    sceneManager.loadAlertErrorBox("Invalid Input",
+                            "This serial number already exist");
                     item.setSerialNum(event.getOldValue());
                 }
             }
             else {
-                sm.loadAlertErrorBox("Invalid Input", "Serial numbers have to be 10 characters long");
+                sceneManager.loadAlertErrorBox("Invalid Input",
+                        "Serial numbers have to be 10 characters long");
                 item.setSerialNum(event.getOldValue());
             }
             tableListView.refresh();
@@ -134,8 +138,9 @@ public class InventoryAppController implements Initializable {
                 double num = Double.parseDouble(event.getNewValue());
                 item.setPrice(String.format("%.2f", num));
             } catch (NumberFormatException e) {
-                SceneManager sm = new SceneManager();
-                sm.loadAlertErrorBox("Invalid Input", "Invalid Input in price text field:" +
+                SceneManager sceneManager = new SceneManager();
+                sceneManager.loadAlertErrorBox("Invalid Input",
+                        "Invalid Input in price text field:" +
                         "Make sure to to put in numbers only");
                 item.setPrice(event.getOldValue());
             }
