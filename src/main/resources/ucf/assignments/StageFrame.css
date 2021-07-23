@@ -7,7 +7,7 @@
 }
 
 .jfx-decorator .resize-border {
-    -fx-border-color: -fx-decorator-color;
+    -fx-border-color: Black;
     -fx-border-opacity: 0;
     -fx-border-width: 0 2 2 2;
 }

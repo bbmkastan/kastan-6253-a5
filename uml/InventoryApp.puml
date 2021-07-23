@@ -11,5 +11,6 @@ class InventoryApp {
 Application <|-- InventoryApp
 InventoryApp -- InventoryAppController
 InventoryAppController --* Item
-InventoryApp -- ItemCreatorController
+InventoryAppController -- ItemCreatorController
+ItemCreatorController --* Item
 @enduml

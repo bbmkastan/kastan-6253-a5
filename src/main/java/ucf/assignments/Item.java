@@ -8,12 +8,12 @@ package ucf.assignments;
 public class Item {
     private String name;
     private String serialNum;
-    private double value;
+    private String price;
 
-    public Item(String name, String serialNum, double value) {
+    public Item(String name, String serialNum, String price) {
         this.name = name;
         this.serialNum = serialNum;
-        this.value = value;
+        this.price = price;
     }
 
     public String getName() {
@@ -32,11 +32,11 @@ public class Item {
         this.serialNum = serialNum;
     }
 
-    public double getValue() {
-        return value;
+    public String getPrice() {
+        return price;
     }
 
-    public void setValue(double value) {
-        this.value = value;
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
