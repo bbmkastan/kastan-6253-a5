@@ -40,15 +40,33 @@ public class ItemCreatorController {
         this.itemList = list;
     }
 
+    boolean isDuplicateSerialNum(String serialNum) {
+        for (Item item : itemList) {
+            if (item.getSerialNum().equals(serialNum)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     String getName() {
         if (itemNameTextField.getText().trim().length() > 1 && itemNameTextField.getText().trim().length() < 257) {
             return itemNameTextField.getText();
         }
+        // warning box
         return null;
     }
 
     String getSerialNum() {
-        return serialNumberTextField.getText();
+        if (serialNumberTextField.getText().trim().length() == 10) {
+            if (!isDuplicateSerialNum(serialNumberTextField.getText())) {
+                return serialNumberTextField.getText();
+            }
+            // warning box
+            return null;
+        }
+        // warning box
+        return null;
     }
 
     String getPrice() {
