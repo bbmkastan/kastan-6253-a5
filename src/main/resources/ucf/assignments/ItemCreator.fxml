@@ -21,7 +21,7 @@
       <StackPane prefHeight="250.0" prefWidth="400.0" />
       <TextField fx:id="itemNameTextField" layoutX="153.0" layoutY="99.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="99.0" />
       <TextField fx:id="serialNumberTextField" layoutX="153.0" layoutY="139.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="139.0" />
-      <TextField fx:id="vauleTextField" layoutX="153.0" layoutY="179.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="179.0" />
+      <TextField fx:id="valueTextField" layoutX="153.0" layoutY="179.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="179.0" />
       <Label layoutX="62.0" layoutY="102.0" text="Item Name:" AnchorPane.leftAnchor="62.0" AnchorPane.topAnchor="102.0">
          <font>
             <Font name="System Bold" size="14.0" />

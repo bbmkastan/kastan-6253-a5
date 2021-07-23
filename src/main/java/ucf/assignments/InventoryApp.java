@@ -23,15 +23,7 @@ public class InventoryApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InventoryApp.fxml")));
-        JFXDecorator decorator = new JFXDecorator(primaryStage, root);
-        decorator.setCustomMaximize(true);
-
-        Scene scene = new Scene(decorator);
-        scene.getStylesheets().add("ucf/assignments/StageFrame.css");
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        SceneManager sceneManager = new SceneManager();
+        sceneManager.loadInventoryAppScene(primaryStage);
     }
 }

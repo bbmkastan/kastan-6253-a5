@@ -13,4 +13,7 @@ InventoryApp -- InventoryAppController
 InventoryAppController --* Item
 InventoryAppController -- ItemCreatorController
 ItemCreatorController --* Item
+InventoryApp --* SceneManager
+InventoryAppController --* SceneManager
+ItemCreatorController --* SceneManager
 @enduml

@@ -23,7 +23,7 @@ public class ItemCreatorController {
     private TextField serialNumberTextField;
 
     @FXML
-    private TextField vauleTextField;
+    private TextField valueTextField;
 
     @FXML
     void createItemButtonClicked(ActionEvent event) throws IOException {
@@ -72,7 +72,7 @@ public class ItemCreatorController {
     String getPrice() {
         String price = null;
         try {
-            double num = Double.parseDouble(vauleTextField.getText().trim());
+            double num = Double.parseDouble(valueTextField.getText().trim());
             price = String.format("$%.2f", num);
         } catch(NumberFormatException e) {
             // warning box
