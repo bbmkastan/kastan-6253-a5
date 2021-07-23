@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -91,6 +92,22 @@ public class InventoryAppController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(item -> {
+
+            if (newValue == null || newValue.isEmpty()) {
+                return true;
+            }
+
+            String lowerCaseFilter = newValue.toLowerCase();
+
+            if (item.getName().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else if (item.getSerialNum().toLowerCase().contains(lowerCaseFilter)) {
+                return true;
+            } else return item.getPrice().toLowerCase().contains(lowerCaseFilter);
+        }));
+
         colName.setCellFactory(TextFieldTableCell.forTableColumn());
         colName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         colName.setOnEditCommit(event -> {
