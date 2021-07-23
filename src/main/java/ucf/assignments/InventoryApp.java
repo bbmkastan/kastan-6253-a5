@@ -1,11 +1,7 @@
 package ucf.assignments;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import com.jfoenix.controls.JFXDecorator;
 
 /*
  *  UCF COP3330 Summer 2021 Assignment 5 Solution
@@ -13,7 +9,6 @@ import com.jfoenix.controls.JFXDecorator;
  */
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class InventoryApp extends Application {
 

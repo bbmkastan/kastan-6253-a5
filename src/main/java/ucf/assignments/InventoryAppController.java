@@ -66,21 +66,6 @@ public class InventoryAppController implements Initializable {
 
     }
 
-    @FXML
-    void sortByNameButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void sortBySerialNumButtonClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void sortByValueButtonClicked(ActionEvent event) {
-
-    }
-
     boolean isDuplicateSerialNum(String serialNum) {
         for (Item item : list) {
             if (item.getSerialNum().equals(serialNum)) {
@@ -92,6 +77,7 @@ public class InventoryAppController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        sortedList.comparatorProperty().bind(tableListView.comparatorProperty());
 
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(item -> {
 

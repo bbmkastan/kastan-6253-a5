@@ -27,7 +27,7 @@ public class ItemCreatorController {
     private TextField valueTextField;
 
     @FXML
-    void createItemButtonClicked(ActionEvent event) throws IOException {
+    void createItemButtonClicked(ActionEvent event) {
         String name = getName();
         String serialNum = getSerialNum();
         String price = getPrice();
@@ -35,6 +35,12 @@ public class ItemCreatorController {
             Item item = new Item(name, serialNum, price);
             itemList.add(item);
         }
+    }
+
+    public void refresh() {
+        itemNameTextField.setText(null);
+        serialNumberTextField.setText(null);
+        valueTextField.setText(null);
     }
 
     public void setList(ObservableList<Item> list) {
