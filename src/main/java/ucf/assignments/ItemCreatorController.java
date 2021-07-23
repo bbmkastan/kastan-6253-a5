@@ -8,6 +8,7 @@ package ucf.assignments;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class ItemCreatorController {
                 return true;
             }
         }
+        // warning box
         return false;
     }
 
@@ -53,19 +55,22 @@ public class ItemCreatorController {
         if (itemNameTextField.getText().trim().length() > 1 && itemNameTextField.getText().trim().length() < 257) {
             return itemNameTextField.getText();
         }
-        // warning box
+        SceneManager sm = new SceneManager();
+        sm.loadAlertErrorBox("Invalid Input","Names have to be at least 2 characters long and" +
+                "at most 256 characters long.");
         return null;
     }
 
     String getSerialNum() {
+        SceneManager sm = new SceneManager();
         if (serialNumberTextField.getText().trim().length() == 10) {
             if (!isDuplicateSerialNum(serialNumberTextField.getText())) {
                 return serialNumberTextField.getText();
             }
-            // warning box
+            sm.loadAlertErrorBox("Invalid Input", "This serial number already exist");
             return null;
         }
-        // warning box
+        sm.loadAlertErrorBox("Invalid Input", "Serial numbers have to be 10 characters long");
         return null;
     }
 
@@ -73,9 +78,11 @@ public class ItemCreatorController {
         String price = null;
         try {
             double num = Double.parseDouble(valueTextField.getText().trim());
-            price = String.format("$%.2f", num);
-        } catch(NumberFormatException e) {
-            // warning box
+            price = String.format("%.2f", num);
+        } catch (NumberFormatException e) {
+            SceneManager sm = new SceneManager();
+            sm.loadAlertErrorBox("Invalid Input", "Invalid Input in price text field:" +
+                    "Make sure to to put in numbers only");
         }
         return price;
     }
