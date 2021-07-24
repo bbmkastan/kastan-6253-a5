@@ -37,7 +37,7 @@
                     text="File" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="16.0">
             <items>
                 <MenuItem mnemonicParsing="false" onAction="#saveAsButtonClicked" text="Save As..."/>
-                <MenuItem mnemonicParsing="false" onAction="#LoadButtonClicked" text="Load..."/>
+                <MenuItem mnemonicParsing="false" onAction="#loadButtonClicked" text="Load..."/>
                 <MenuItem mnemonicParsing="false" onAction="#helpButtonClicked" text="Help"/>
             </items>
             <font>

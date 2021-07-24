@@ -6,12 +6,8 @@ package ucf.assignments;
  */
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class ItemCreatorController {
 
@@ -27,13 +23,14 @@ public class ItemCreatorController {
     private TextField valueTextField;
 
     @FXML
-    void createItemButtonClicked(ActionEvent event) {
+    void createItemButtonClicked() {
         String name = getName();
         String serialNum = getSerialNum();
         String price = getPrice();
         if (name != null && serialNum != null && price != null) {
             Item item = new Item(name, serialNum, price);
             itemList.add(item);
+            refresh();
         }
     }
 

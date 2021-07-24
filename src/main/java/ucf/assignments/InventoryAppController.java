@@ -17,14 +17,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
-import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class InventoryAppController implements Initializable {
-
+    FileChooser fileChooser = new FileChooser();
 
     public TableView<Item> tableListView;
     public TableColumn<Item, String> colName;
@@ -39,8 +41,26 @@ public class InventoryAppController implements Initializable {
     private TextField searchBar;
 
     @FXML
-    void LoadButtonClicked(ActionEvent event) {
+    void loadButtonClicked(ActionEvent event) {
 
+    }
+
+    @FXML
+    void saveAsButtonClicked(ActionEvent event) throws IOException {
+        fileChooser.setInitialFileName("Inventory");
+        File file = fileChooser.showSaveDialog(new Stage());
+        if (file != null) {
+            fileChooser.setInitialDirectory(file.getParentFile());
+
+            String fileName = file.getName();
+            String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
+            FileManager fileManager = new FileManager();
+            switch (fileExtension) {
+                case "txt" -> fileManager.saveAsTVS(file.toString(), list);
+                case "html" -> fileManager.saveAsHTML(file.toString(), list);
+                case "json" -> fileManager.saveAsJSON(file.toString(), list);
+            }
+        }
     }
 
     @FXML
@@ -61,11 +81,6 @@ public class InventoryAppController implements Initializable {
 
     }
 
-    @FXML
-    void saveAsButtonClicked(ActionEvent event) {
-
-    }
-
     boolean isDuplicateSerialNum(String serialNum) {
         for (Item item : list) {
             if (item.getSerialNum().equals(serialNum)) {
@@ -77,6 +92,12 @@ public class InventoryAppController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        fileChooser.setInitialDirectory(new File("C:"));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("text file (*.txt)","*.txt"),
+                new FileChooser.ExtensionFilter("html file (*.html)", "*.html"),
+                new FileChooser.ExtensionFilter("json file (*.json)", "*.json"));
+
         sortedList.comparatorProperty().bind(tableListView.comparatorProperty());
 
         searchBar.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(item -> {
