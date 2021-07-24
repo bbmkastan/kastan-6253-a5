@@ -79,7 +79,7 @@ public class FileManager {
     public void loadAsJSON (File file, ObservableList<Item> list) throws IOException {
         Scanner scanner = new Scanner(file);
         String json = scanner.nextLine();
-        String string = json.replaceAll("[^a-zA-Z0-9:,.]","");
+        String string = json.replaceAll("[{}\\[\\]\"]","");
         String[] parts = string.split(",");
         for (int i = 0; parts.length > i; ++i) {
             parts[i] = parts[i].substring(parts[i].lastIndexOf(":") + 1);
