@@ -69,12 +69,12 @@ public class ItemCreatorController {
             if (!isDuplicateSerialNum(serialNumberTextField.getText())) {
                 return serialNumberTextField.getText();
             }
-            sm.loadAlertErrorBox("Invalid Input", "This serial number already exist");
+            sm.loadAlertErrorBox("Invalid Input", "This serial number already exist.");
             return null;
         }
         sm.loadAlertErrorBox("Invalid Input",
                 "Serial numbers have to be in the format of " +
-                "XXXXXXXXXX where X can be either a letter or digit");
+                "XXXXXXXXXX where X can be either a letter or digit.");
         return null;
     }
 
@@ -85,8 +85,8 @@ public class ItemCreatorController {
             price = String.format("%.2f", num);
         } catch (NumberFormatException e) {
             SceneManager sceneManager = new SceneManager();
-            sceneManager.loadAlertErrorBox("Invalid Input", "Invalid Input in price text field:" +
-                    "Make sure to to put in numbers only");
+            sceneManager.loadAlertErrorBox("Invalid Input",
+                    "Make sure to to put in numbers only (and only one or less dots) for price.");
         }
         return price;
     }

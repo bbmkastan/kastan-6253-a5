@@ -42,15 +42,17 @@ public class InventoryAppController implements Initializable {
     @FXML
     void loadButtonClicked() throws IOException {
         File file = fileChooser.showOpenDialog(new Stage());
-        fileChooser.setInitialDirectory(file.getParentFile());
+        if (file != null) {
+            fileChooser.setInitialDirectory(file.getParentFile());
 
-        String fileName = file.getName();
-        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
-        FileManager fileManager = new FileManager();
-        switch (fileExtension) {
-            case "txt" -> fileManager.loadAsTSV(file, list);
-            case "html" -> fileManager.loadAsHTML(file, list);
-            case "json" -> fileManager.loadAsJSON(file, list);
+            String fileName = file.getName();
+            String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
+            FileManager fileManager = new FileManager();
+            switch (fileExtension) {
+                case "html" -> fileManager.loadAsHTML(file, list);
+                case "json" -> fileManager.loadAsJSON(file, list);
+                default -> fileManager.loadAsTSV(file, list);
+            }
         }
         tableListView.refresh();
     }
@@ -66,9 +68,9 @@ public class InventoryAppController implements Initializable {
             String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
             FileManager fileManager = new FileManager();
             switch (fileExtension) {
-                case "txt" -> fileManager.saveAsTSV(file.toString(), list);
                 case "html" -> fileManager.saveAsHTML(file.toString(), list);
                 case "json" -> fileManager.saveAsJSON(file.toString(), list);
+                default -> fileManager.saveAsTSV(file.toString(), list);
             }
         }
     }
@@ -152,14 +154,14 @@ public class InventoryAppController implements Initializable {
                     item.setSerialNum(event.getNewValue());
                 } else {
                     sceneManager.loadAlertErrorBox("Invalid Input",
-                            "This serial number already exist");
+                            "This serial number already exist.");
                     item.setSerialNum(event.getOldValue());
                 }
             }
             else {
                 sceneManager.loadAlertErrorBox("Invalid Input",
                         "Serial numbers have to be in the format of XXXXXXXXXX " +
-                                "where X can be either a letter or digit");
+                                "where X can be either a letter or digit.");
                 item.setSerialNum(event.getOldValue());
             }
             tableListView.refresh();
@@ -175,8 +177,7 @@ public class InventoryAppController implements Initializable {
             } catch (NumberFormatException e) {
                 SceneManager sceneManager = new SceneManager();
                 sceneManager.loadAlertErrorBox("Invalid Input",
-                        "Invalid Input in price text field:" +
-                        "Make sure to to put in numbers only (and only one dot)");
+                        "Make sure to to put in numbers only (and only one or less dots) for price.");
                 item.setPrice(event.getOldValue());
             }
             tableListView.refresh();

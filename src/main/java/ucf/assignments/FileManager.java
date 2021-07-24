@@ -84,7 +84,8 @@ public class FileManager {
         for (int i = 0; parts.length > i; ++i) {
             parts[i] = parts[i].substring(parts[i].lastIndexOf(":") + 1);
         }
-        int numItems = parts.length/3;
+        int numOfVarInObject = 3;
+        int numItems = parts.length/numOfVarInObject;
         int j = -1;
         for (int i = 0 ;numItems > i; ++i) {
             Item item = new Item(parts[++j],parts[++j],parts[++j]);
