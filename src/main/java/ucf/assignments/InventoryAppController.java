@@ -9,7 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -41,12 +40,12 @@ public class InventoryAppController implements Initializable {
     private TextField searchBar;
 
     @FXML
-    void loadButtonClicked(ActionEvent event) {
+    void loadButtonClicked() {
 
     }
 
     @FXML
-    void saveAsButtonClicked(ActionEvent event) throws IOException {
+    void saveAsButtonClicked() throws IOException {
         fileChooser.setInitialFileName("Inventory");
         File file = fileChooser.showSaveDialog(new Stage());
         if (file != null) {
@@ -56,7 +55,7 @@ public class InventoryAppController implements Initializable {
             String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
             FileManager fileManager = new FileManager();
             switch (fileExtension) {
-                case "txt" -> fileManager.saveAsTVS(file.toString(), list);
+                case "txt" -> fileManager.saveAsTSV(file.toString(), list);
                 case "html" -> fileManager.saveAsHTML(file.toString(), list);
                 case "json" -> fileManager.saveAsJSON(file.toString(), list);
             }
@@ -64,20 +63,20 @@ public class InventoryAppController implements Initializable {
     }
 
     @FXML
-    void addButtonClicked(ActionEvent event) throws IOException {
+    void addButtonClicked() throws IOException {
         SceneManager sceneManager = new SceneManager();
         sceneManager.loadItemCreatorScene(list);
     }
 
     @FXML
-    void deleteButtonClicked(ActionEvent event) {
+    void deleteButtonClicked() {
         int visibleIndex = tableListView.getSelectionModel().getSelectedIndex();
         list.remove(visibleIndex);
         tableListView.refresh();
     }
 
     @FXML
-    void helpButtonClicked(ActionEvent event) {
+    void helpButtonClicked() {
 
     }
 
@@ -137,7 +136,7 @@ public class InventoryAppController implements Initializable {
             SceneManager sceneManager = new SceneManager();
             String serialNum = event.getNewValue();
             Item item = event.getRowValue();
-            if (serialNum.trim().length() == 10) {
+            if (serialNum.trim().matches("[a-zA-Z0-9]{10}")) {
                 if (!isDuplicateSerialNum(serialNum)) {
                     item.setSerialNum(event.getNewValue());
                 } else {
@@ -148,7 +147,8 @@ public class InventoryAppController implements Initializable {
             }
             else {
                 sceneManager.loadAlertErrorBox("Invalid Input",
-                        "Serial numbers have to be 10 characters long");
+                        "Serial numbers have to be in the format of XXXXXXXXXX " +
+                                "where X can be either a letter or digit");
                 item.setSerialNum(event.getOldValue());
             }
             tableListView.refresh();
@@ -165,7 +165,7 @@ public class InventoryAppController implements Initializable {
                 SceneManager sceneManager = new SceneManager();
                 sceneManager.loadAlertErrorBox("Invalid Input",
                         "Invalid Input in price text field:" +
-                        "Make sure to to put in numbers only");
+                        "Make sure to to put in numbers only (and only one dot)");
                 item.setPrice(event.getOldValue());
             }
             tableListView.refresh();

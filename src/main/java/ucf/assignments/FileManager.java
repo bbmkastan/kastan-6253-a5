@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class FileManager {
-    public void saveAsTVS (String fileName, ObservableList<Item> list) throws IOException {
+    public void saveAsTSV (String fileName, ObservableList<Item> list) throws IOException {
         FileWriter writer = new FileWriter(fileName);
         for (Item item : list) {
             writer.write(item.getName() + "\t" + item.getSerialNum() + "\t" + item.getPrice()+"\n");

@@ -65,14 +65,16 @@ public class ItemCreatorController {
 
     String getSerialNum() {
         SceneManager sm = new SceneManager();
-        if (serialNumberTextField.getText().trim().length() == 10) {
+        if (serialNumberTextField.getText().trim().matches("[a-zA-Z0-9]{10}")) {
             if (!isDuplicateSerialNum(serialNumberTextField.getText())) {
                 return serialNumberTextField.getText();
             }
             sm.loadAlertErrorBox("Invalid Input", "This serial number already exist");
             return null;
         }
-        sm.loadAlertErrorBox("Invalid Input", "Serial numbers have to be 10 characters long");
+        sm.loadAlertErrorBox("Invalid Input",
+                "Serial numbers have to be in the format of " +
+                "XXXXXXXXXX where X can be either a letter or digit");
         return null;
     }
 

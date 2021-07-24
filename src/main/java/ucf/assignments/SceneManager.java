@@ -21,6 +21,7 @@ public class SceneManager {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("InventoryApp.fxml")));
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("Style.css")));
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -34,6 +35,7 @@ public class SceneManager {
 
         Stage stage = new Stage();
         Scene scene = new Scene(parent);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("Style.css")));
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
