@@ -33,15 +33,26 @@ public class InventoryAppController implements Initializable {
     public TableColumn<Item, String> colPrice;
 
     private final ObservableList<Item> list = FXCollections.observableArrayList();
-    FilteredList<Item> filteredData = new FilteredList<>(list, p -> true);
-    SortedList<Item> sortedList = new SortedList<>(filteredData);
+    private final FilteredList<Item> filteredData = new FilteredList<>(list, p -> true);
+    private final SortedList<Item> sortedList = new SortedList<>(filteredData);
 
     @FXML
     private TextField searchBar;
 
     @FXML
-    void loadButtonClicked() {
+    void loadButtonClicked() throws IOException {
+        File file = fileChooser.showOpenDialog(new Stage());
+        fileChooser.setInitialDirectory(file.getParentFile());
 
+        String fileName = file.getName();
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, file.getName().length());
+        FileManager fileManager = new FileManager();
+        switch (fileExtension) {
+            case "txt" -> fileManager.loadAsTSV(file, list);
+            case "html" -> fileManager.loadAsHTML(file, list);
+            case "json" -> fileManager.loadAsJSON(file, list);
+        }
+        tableListView.refresh();
     }
 
     @FXML
