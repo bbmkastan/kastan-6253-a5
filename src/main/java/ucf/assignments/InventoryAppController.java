@@ -42,6 +42,11 @@ public class InventoryAppController implements Initializable {
     @FXML
     void loadButtonClicked() throws IOException {
         File file = fileChooser.showOpenDialog(new Stage());
+        load(file, list);
+        tableListView.refresh();
+    }
+
+    public void load(File file, ObservableList<Item> list) throws IOException {
         if (file != null) {
             fileChooser.setInitialDirectory(file.getParentFile());
 
@@ -54,13 +59,16 @@ public class InventoryAppController implements Initializable {
                 default -> fileManager.loadAsTSV(file, list);
             }
         }
-        tableListView.refresh();
     }
 
     @FXML
     void saveAsButtonClicked() throws IOException {
         fileChooser.setInitialFileName("Inventory");
         File file = fileChooser.showSaveDialog(new Stage());
+        save(file, list);
+    }
+
+    public void save(File file, ObservableList<Item> list) throws IOException {
         if (file != null) {
             fileChooser.setInitialDirectory(file.getParentFile());
 
@@ -89,11 +97,12 @@ public class InventoryAppController implements Initializable {
     }
 
     @FXML
-    void helpButtonClicked() {
-
+    void clearListButtonClicked() {
+        list.clear();
+        tableListView.refresh();
     }
 
-    boolean isDuplicateSerialNum(String serialNum) {
+    boolean isDuplicateSerialNum(String serialNum, ObservableList<Item> list) {
         for (Item item : list) {
             if (item.getSerialNum().equals(serialNum)) {
                 return true;
@@ -150,7 +159,7 @@ public class InventoryAppController implements Initializable {
             String serialNum = event.getNewValue();
             Item item = event.getRowValue();
             if (serialNum.trim().matches("[a-zA-Z0-9]{10}")) {
-                if (!isDuplicateSerialNum(serialNum)) {
+                if (!isDuplicateSerialNum(serialNum, list)) {
                     item.setSerialNum(event.getNewValue());
                 } else {
                     sceneManager.loadAlertErrorBox("Invalid Input",
@@ -182,7 +191,6 @@ public class InventoryAppController implements Initializable {
             }
             tableListView.refresh();
         });
-
         tableListView.setItems(sortedList);
     }
 }

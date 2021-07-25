@@ -27,10 +27,16 @@ public class ItemCreatorController {
         String name = getName();
         String serialNum = getSerialNum();
         String price = getPrice();
+        createItem(name, serialNum, price, itemList);
+        if (name != null && serialNum != null && price != null) {
+            refresh();
+        }
+    }
+
+    public void createItem(String name, String serialNum, String price, ObservableList<Item> itemList) {
         if (name != null && serialNum != null && price != null) {
             Item item = new Item(name, serialNum, price);
             itemList.add(item);
-            refresh();
         }
     }
 
@@ -44,7 +50,7 @@ public class ItemCreatorController {
         this.itemList = list;
     }
 
-    boolean isDuplicateSerialNum(String serialNum) {
+    boolean isDuplicateSerialNum(String serialNum, ObservableList<Item> itemList) {
         for (Item item : itemList) {
             if (item.getSerialNum().equals(serialNum)) {
                 return true;
@@ -66,7 +72,7 @@ public class ItemCreatorController {
     String getSerialNum() {
         SceneManager sm = new SceneManager();
         if (serialNumberTextField.getText().trim().matches("[a-zA-Z0-9]{10}")) {
-            if (!isDuplicateSerialNum(serialNumberTextField.getText())) {
+            if (!isDuplicateSerialNum(serialNumberTextField.getText(), itemList)) {
                 return serialNumberTextField.getText();
             }
             sm.loadAlertErrorBox("Invalid Input", "This serial number already exist.");

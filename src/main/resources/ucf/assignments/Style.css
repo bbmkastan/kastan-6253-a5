@@ -1,12 +1,12 @@
 /* text field */
 
 .text-field {
-    -fx-background-color: -fx-text-box-border, -fx-background;
+    -fx-background-color: -fx-text-box-border, white;
     -fx-background-insets: 0, 0 0 2 0;
     -fx-background-radius: 0;
 }
 .text-field:focused {
-    -fx-background-color: -fx-focus-color, -fx-background;
+    -fx-background-color: -fx-focus-color, white;
 }
 
 /* Table View */
@@ -36,7 +36,7 @@
 
 }
 
-/* The main scrollbar **track** CSS class  */
+/* The main scrollbar track CSS class  */
 .table-view .scroll-bar:horizontal .track,
 .table-view .scroll-bar:vertical .track{
     -fx-background-color: transparent;
@@ -46,11 +46,10 @@
     -fx-border-radius:2em;
 }
 
-/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+/* The main scrollbar thumb CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb,
 .table-view .scroll-bar:vertical .thumb {
     -fx-background-color:derive( #6200EE,90%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
-
 }

@@ -4,14 +4,79 @@
 'https://plantuml.com/class-diagram
 
 class InventoryApp {
-    main()
-    start()
+    + main(String[] args)
+    + start(Stage primaryStage)
+}
+
+class InventoryAppController {
+    + TableView<Item> tableListView;
+    + TableColumn<Item, String> colName;
+    + TableColumn<Item, String> colSerialNum;
+    + TableColumn<Item, String> colPrice;
+    - ObservableList<Item> list;
+    - FilteredList<Item> filteredData;
+    - SortedList<Item> sortedList;
+    - TextField searchBar;
+
+    # loadButtonClicked()
+    + load(File file, ObservableList<Item> list)
+    # saveAsButtonClicked()
+    + save(File file, ObservableList<Item> list)
+    # addButtonClicked()
+    # deleteButtonClicked()
+    # isDuplicateSerialNum(String serialNum, ObservableList<Item> list)
+    + initialize(URL location, ResourceBundle resources)
+}
+
+class ItemCreatorController {
+    - ObservableList<Item> itemList;
+    - TextField itemNameTextField;
+    - TextField serialNumberTextField;
+    - TextField valueTextField;
+
+    # createItemButtonClicked()
+    + createItem(String name, String serialNum, String price, ObservableList<Item> itemList)
+    + refresh()
+    + setList(ObservableList<Item> list)
+    # isDuplicateSerialNum(String serialNum, ObservableList<Item> itemList)
+    # getName()
+    # getSerialNum()
+    # getPrice()
+}
+
+class FileManger{
+    + saveAsTSV (String fileName, ObservableList<Item> list)
+    + saveAsHTML (String fileName, ObservableList<Item> list)
+    + saveAsJSON (String fileName, ObservableList<Item> list)
+    + loadAsTSV (File file, ObservableList<Item> list)
+    + loadAsHTML (File file, ObservableList<Item> list)
+    + loadAsJSON (File file, ObservableList<Item> list)
+}
+
+class Item{
+    - String name;
+    - String serialNum;
+    - String price;
+
+    + Item(String name, String serialNum, String price)
+    + getName()
+    + setName(String name)
+    + getSerialNum()
+    + setSerialNum(String serialNum)
+    + getPrice()
+    + setPrice(String price)
+}
+
+class SceneManager{
+    + loadInventoryAppScene (Stage primaryStage)
+    + loadItemCreatorScene (ObservableList<Item> list)
+    + loadAlertErrorBox(String headerText, String contentText)
 }
 
 Application <|-- InventoryApp
-InventoryApp -- InventoryAppController
+InventoryApp -* InventoryAppController
 InventoryAppController --* Item
-InventoryAppController -- ItemCreatorController
+InventoryAppController ----* ItemCreatorController
 ItemCreatorController --* Item
 InventoryApp --* SceneManager
 InventoryAppController --* SceneManager
