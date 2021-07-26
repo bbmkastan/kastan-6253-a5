@@ -4,18 +4,13 @@
 <p align="center">
   Assignment 5 for COP3330-21Summer CV01
  </p>
- 
- <!-- TABLE OF CONTENTS -->
-<details align="center" open="open">
-  <summary>Table of Contents</summary>
-</details>
 
 <!-- USER GUIDE -->
 ## User Guide
 
 ### Creating An Item
 ---
-1. Click on the +button at the bottom right corner and a new window called Item Creator should pop-up.
+1. Click on the + button at the bottom right corner and a new window called Item Creator should pop-up.
 2. Enter your item name, serial number, and price.
 3. Click on the + button on the Item Creator window.
 
@@ -26,6 +21,11 @@
 ---
 1. Select the item you wish to delete by clicking on the row in the table on which the item is on.
 2. Click the delete button in the top right corner.
+
+### Clearing An Inventory
+---
+1. Click the file dropdown button at the top left corner of the app.
+2. Click the clear button.
 
 ### Editing An Exsiting Item
 ---
@@ -40,13 +40,13 @@
 ---
 1. Click on the colum header on the table of which value/text you wish to sort by.
 
-#Example: If you want to to sort by Serial Number, simply click on the the Serial Number colum header
+#Example: If you want to to sort by Serial Number, simply click on the the Serial Number colum header.
 
 ### Searching
 ---
 1. Simply type in the search bar the text you are searching for and the application will search for any text in the table that matches.
 
-#Note: it will search all three colums in the the table.
+#Note: it will search all three colums in the table.
 
 ### Saving
 ---
@@ -54,3 +54,13 @@
 2. Click on the Save as button.
 3. Choose what to save the file As and where to save the file to.
 4. Click Save.
+
+### Loading
+---
+1. Click on the File dropdown button at the top left of the application.
+2. Click on the Load as button.
+3. Pick the file you wish to load.
+
+#Note: If you load the file while there are still items in your inventory,
+the app will just add on the items from the file to the list.
+#Note: You will only be able to pick a text, html, or json file.
