@@ -10,7 +10,7 @@
 
 ### Creating An Item
 ---
-1. Click on the +button at the bottom right corner and a new window called Item Creator should pop-up.
+1. Click on the + button at the bottom right corner and a new window called Item Creator should pop-up.
 2. Enter your item name, serial number, and price.
 3. Click on the + button on the Item Creator window.
 
