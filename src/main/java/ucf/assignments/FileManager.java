@@ -46,7 +46,6 @@ public class FileManager {
 
     public void loadAsTSV (File file, ObservableList<Item> list) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
-        list.clear();
         while(scanner.hasNextLine()) {
             String string = scanner.nextLine();
             String[] parts = string.split("\t");
