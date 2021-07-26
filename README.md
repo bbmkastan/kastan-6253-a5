@@ -4,11 +4,6 @@
 <p align="center">
   Assignment 5 for COP3330-21Summer CV01
  </p>
- 
- <!-- TABLE OF CONTENTS -->
-<details align="center" open="open">
-  <summary>Table of Contents</summary>
-</details>
 
 <!-- USER GUIDE -->
 ## User Guide
@@ -54,3 +49,11 @@
 2. Click on the Save as button.
 3. Choose what to save the file As and where to save the file to.
 4. Click Save.
+
+### Loading
+---
+1. Click on the File dropdown button at the top left of the application.
+2. Click on the Load as button.
+3. Pick the file you wish to load.
+
+#Note: You will only be able to pick a text, html, or json file
