@@ -41,9 +41,12 @@ public class InventoryAppController implements Initializable {
 
     @FXML
     void loadButtonClicked() throws IOException {
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
+                "All files (.txt, .html, .json)","*.txt","*.html","*.json"));
         File file = fileChooser.showOpenDialog(new Stage());
         load(file, list);
         tableListView.refresh();
+        fileChooser.getExtensionFilters().clear();
     }
 
     public void load(File file, ObservableList<Item> list) throws IOException {
@@ -63,9 +66,14 @@ public class InventoryAppController implements Initializable {
 
     @FXML
     void saveAsButtonClicked() throws IOException {
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("text file (*.txt)","*.txt"),
+                new FileChooser.ExtensionFilter("html file (*.html)", "*.html"),
+                new FileChooser.ExtensionFilter("json file (*.json)", "*.json"));
         fileChooser.setInitialFileName("Inventory");
         File file = fileChooser.showSaveDialog(new Stage());
         save(file, list);
+        fileChooser.getExtensionFilters().clear();
     }
 
     public void save(File file, ObservableList<Item> list) throws IOException {
@@ -114,10 +122,6 @@ public class InventoryAppController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fileChooser.setInitialDirectory(new File("C:"));
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("text file (*.txt)","*.txt"),
-                new FileChooser.ExtensionFilter("html file (*.html)", "*.html"),
-                new FileChooser.ExtensionFilter("json file (*.json)", "*.json"));
 
         sortedList.comparatorProperty().bind(tableListView.comparatorProperty());
 
