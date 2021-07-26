@@ -40,7 +40,7 @@
 ---
 1. Click on the colum header on the table of which value/text you wish to sort by.
 
-#Example: If you want to to sort by Serial Number, simply click on the the Serial Number colum header
+#Example: If you want to to sort by Serial Number, simply click on the the Serial Number colum header.
 
 ### Searching
 ---
@@ -62,5 +62,5 @@
 3. Pick the file you wish to load.
 
 #Note: If you load the file while there are still items in your inventory,
-the app will just add on the items from the file to the list
-#Note: You will only be able to pick a text, html, or json file
+the app will just add on the items from the file to the list.
+#Note: You will only be able to pick a text, html, or json file.
