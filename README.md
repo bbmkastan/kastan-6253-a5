@@ -46,7 +46,7 @@
 ---
 1. Simply type in the search bar the text you are searching for and the application will search for any text in the table that matches.
 
-#Note: it will search all three colums in the the table.
+#Note: it will search all three colums in the table.
 
 ### Saving
 ---
